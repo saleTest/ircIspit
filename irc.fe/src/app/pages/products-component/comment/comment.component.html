@@ -1,0 +1,20 @@
+<!-- product-comments.component.html -->
+<div class="comment-body">
+  <div class="comment" *ngFor="let comment of comments">
+    <p>{{ comment.text }}</p>
+    <mat-icon class="delete" (click)="deleteComment(comment._id)"
+      >delete</mat-icon
+    >
+    <!-- <button (click)="deleteComment(comment._id)">Delete</button> -->
+  </div>
+
+  <form class="comment-form" (submit)="addComment()">
+    <textarea
+      [(ngModel)]="newCommentText"
+      name="newCommentText"
+      required
+      placeholder="Enter your comment..."
+    ></textarea>
+    <button class="btnHome" type="submit">Add Comment</button>
+  </form>
+</div>

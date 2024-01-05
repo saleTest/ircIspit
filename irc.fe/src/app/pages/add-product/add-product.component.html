@@ -1,0 +1,120 @@
+<div class="unos-proizvoda">
+  <h2>Dodavanje Novog Proizvoda</h2>
+
+  <form (ngSubmit)="addProduct()">
+    <div class="form-item">
+      <input
+        type="text"
+        [(ngModel)]="name"
+        name="name"
+        placeholder="Naziv proizvoda"
+      />
+    </div>
+
+    <div class="form-item">
+      <input
+        type="text"
+        [(ngModel)]="description"
+        name="description"
+        placeholder="Opis proizvoda"
+      />
+    </div>
+
+    <div class="form-item">
+      <input
+        type="number"
+        [(ngModel)]="price"
+        name="price"
+        placeholder="Cena proizvoda"
+      />
+    </div>
+
+    <!-- <div class="form-item">
+      <label for="category">Kategorija:</label>
+      <select id="category" name="category" [(ngModel)]="category">
+        <option value="odeca">Odeća</option>
+        <option value="obuca">Obuća</option>
+        <option value="tehnika">Tehnika</option>
+      </select>
+    </div> -->
+
+    <div class="form-item">
+      <label for="category">Kategorija:</label>
+      <select id="category" name="category" [(ngModel)]="selectedCategoty">
+        <option value="" disabled selected>Odaberite Kategoriju</option>
+        <option *ngFor="let categorys of category" [value]="categorys.name">
+          {{ categorys.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-item">
+      <label for="subcategory">Pod Kategorija:</label>
+      <select
+        id="subcategory"
+        name="subcategory"
+        [(ngModel)]="selectedSubCategoty"
+      >
+        <option value="" disabled selected>Odaberite Pod Kategoriju</option>
+        <option
+          *ngFor="let subcategorys of subcategory"
+          [value]="subcategorys.name"
+        >
+          {{ subcategorys.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-item">
+      <label for="brands">Brend:</label>
+      <select id="brands" name="brands" [(ngModel)]="selectedBrand">
+        <option value="" disabled selected>Odaberite brend</option>
+        <option *ngFor="let brand of brands" [value]="brand.name">
+          {{ brand.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-item">
+      <label for="image">Slika Proizvoda:</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+    </div>
+
+    <div class="form-item">
+      <input
+        type="text"
+        [(ngModel)]="color"
+        name="color"
+        placeholder="Boja proizvoda"
+      />
+    </div>
+
+    <div class="form-item">
+      <input
+        *ngFor="let size of sizes; let i = index"
+        type="text"
+        [(ngModel)]="sizes[i]"
+        name="size{{ i }}"
+        placeholder="Velicina proizvoda"
+      />
+    </div>
+    <button (click)="addSizeField()">Dodaj veličinu</button>
+
+    <div class="form-item">
+      <input
+        type="number"
+        [(ngModel)]="quantity"
+        name="quantity"
+        placeholder="Kolicina proizvoda na stanju"
+      />
+    </div>
+
+    <button type="submit" class="btn">Dodaj Proizvod</button>
+  </form>
+</div>

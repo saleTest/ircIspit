@@ -1,0 +1,76 @@
+<section>
+  <form
+    action=""
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        placeholder="Your Email"
+        required
+        email
+        name="email"
+        ngModel
+        #emailInput="ngModel"
+      />
+      <mat-error *ngIf="emailInput.hasError('required')"
+        >Email is required</mat-error
+      >
+      <mat-error *ngIf="!emailInput.hasError('required')"
+        >Please use the correct email format / adress</mat-error
+      >
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field>
+      <input
+        type="{{ hidePassword ? 'password' : 'text' }}"
+        matInput
+        placeholder="Your password"
+        ngModel
+        name="password"
+        required
+        password
+        #passInput="ngModel"
+        minlength="8"
+        id="password"
+      />
+      <mat-icon matSuffix>lock</mat-icon>
+
+      <mat-error *ngIf="!emailInput.hasError('required')"
+        >Password is required</mat-error
+      >
+      <!-- <input
+        type="{{ hidePassword ? 'password' : 'text' }}"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+      /> -->
+    </mat-form-field>
+    <div class="check-label">
+      <mat-checkbox>Remember Me!</mat-checkbox>
+      <mat-checkbox (click)="togglePasswordVisibility()"
+        >Show/Hide</mat-checkbox
+      >
+    </div>
+    <mat-label *ngIf="errorExists">{{ errorText }}</mat-label>
+
+    <div class="btn-area">
+      <button
+        class="login-btn"
+        mat-raised-button
+        color="primary"
+        [disabled]="f.invalid"
+      >
+        Sign In
+      </button>
+      <br />
+      <button mat-raised-button>Login with Google</button>
+    </div>
+  </form>
+</section>

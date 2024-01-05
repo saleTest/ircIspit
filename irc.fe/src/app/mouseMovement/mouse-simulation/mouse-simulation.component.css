@@ -1,0 +1,15 @@
+/* #myCanvas {
+  background-image: url("../../../assets/2.2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid black;
+} */
+#myCanvas {
+  background-image: url("../../../assets/2.2.png");
+  background-size: calc(100%-25px);
+  display: block;
+  margin: 0 auto;
+  border: 1px solid black;
+}

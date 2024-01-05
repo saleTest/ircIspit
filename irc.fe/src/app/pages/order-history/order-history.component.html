@@ -1,0 +1,144 @@
+<!-- <div *ngFor="let order of orderHistory">
+  <p>Order ID: {{ order._id }}</p>
+  <p>Name: {{ order.order.name }}</p>
+  <p>Items:</p>
+  <ul *ngFor="let item of order.items">
+    <li>
+      <a [routerLink]="'/products/' + item._id">
+        <p>Name Product: {{ item.name }}</p>
+        <p>Price : {{ item.price }}</p>
+        <p>Quantity: {{ order.quantity }}</p>
+        <p>Status: {{ order.order.status }}</p>
+      </a>
+    </li>
+    <button>Delete</button>
+    <button>Rating</button>
+  </ul>
+</div> -->
+<div class="container">
+  <div *ngFor="let order of orderHistory" class="card my-3">
+    <div
+      [ngClass]="{ 'text-black-50': order.order.status === 'pristiglo',}"
+      class="card-body"
+    >
+      <div class="d-flex justify-content-between mb-2">
+        <p class="card-text mb-4">
+          <i>ID Order:</i> {{ order.order.orderCode }} <br /><i
+            >Date: {{ formatCreatedAt(order.createdAt) }}</i
+          >
+        </p>
+        <div>
+          <ng-container
+            *ngIf="
+              order.order.status === 'u toku' ||
+              order.order.status === 'otkazano'
+            "
+          >
+            <!-- <button class="btn btn-danger me-2">
+              <i class="fa fa-trash">Delete</i>
+            </button> -->
+            <mat-icon
+              class="custom-icon green"
+              (click)="openUpdateOrderDialog(order.order._id)"
+              >update</mat-icon
+            >
+            <mat-icon
+              class="custom-icon silver"
+              (click)="cancelProductStatus(order.order._id)"
+              >cancel</mat-icon
+            >
+            <!-- <mat-icon
+              class="custom-icon red"
+              (click)="deleteProdut(order.order._id)"
+              >delete_forever</mat-icon
+            > -->
+
+            <!-- <button class="btn btn-primary">
+              <i
+                class="fa fa-star"
+                (click)="openUpdateOrderDialog(order.order._id)"
+                >Change</i
+              >
+            </button> -->
+          </ng-container>
+
+          <ng-container *ngIf="order.order.status === 'pristiglo'">
+            <!-- <button class="btn btn-danger me-2">
+              <i class="fa fa-trash">Delete</i>
+            </button> -->
+            <mat-icon
+              *ngIf="!userIsRating"
+              class="custom-icon blue"
+              (click)="openRatingDialog(order.order._id)"
+              >thumb_up</mat-icon
+            >
+            <!-- product-view.component.html -->
+
+            <mat-icon class="custom-icon red">delete_forever</mat-icon>
+
+            <!-- <button class="btn btn-primary">
+              <i class="fa fa-star">Rating</i>
+            </button> -->
+          </ng-container>
+
+          <!-- <button class="btn btn-danger me-2">
+            <i class="fa fa-trash">Delete</i>
+          </button>
+          <button class="btn btn-primary">
+            <i class="fa fa-star">Rating</i>
+          </button> -->
+        </div>
+      </div>
+      <div class="pb-4">
+        <p class="card-text">
+          <strong>Status:</strong>
+          <i
+            class="status-badge ms-3"
+            [ngClass]="{
+              'bg-danger': order.order.status === 'otkazano',
+              'bg-success': order.order.status === 'u toku',
+              'bg-secondary': order.order.status === 'pristiglo'
+            }"
+            >{{ order.order.status }}</i
+          >
+        </p>
+        <!-- <div
+          class="status-badge"
+          [ngClass]="{
+          'bg-danger': order.order.status === 'otkazano',
+          'bg-success': order.order.status === 'u toku',
+          'bg-secondary': order.order.status === 'pristiglo',
+
+        }"
+        > -->
+        <!-- <p
+          class="status-badge"
+          [ngClass]="{
+            'bg-danger': order.order.status === 'otkazano',
+            'bg-success': order.order.status === 'u toku',
+            'bg-secondary': order.order.status === 'pristiglo'
+          }"
+        >
+
+        </p> -->
+
+        <!-- </div> -->
+      </div>
+      <p class="card-text"><strong>Name:</strong> {{ order.order.name }}</p>
+      <p class="card-text">
+        <strong>Adress:</strong> {{ order.order.address }}
+      </p>
+      <p class="card-text"><strong>Phone:</strong> {{ order.order.phone }}</p>
+      <p class="card-text"><strong>Items:</strong></p>
+      <ul class="list-group">
+        <li *ngFor="let item of order.items" class="list-group-item">
+          <a [routerLink]="'/products/' + item._id">
+            <p><strong>Name Product:</strong> {{ item.product.name }}</p>
+            <p><strong>Price:</strong> {{ item.product.price }}</p>
+            <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

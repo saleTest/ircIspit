@@ -1,0 +1,246 @@
+<h2 mat-dialog-title>{{ description }}</h2>
+<form [formGroup]="form" (ngSubmit)="updateOrder()">
+  <mat-dialog-content>
+    <label for="name">Name:</label>
+    <mat-form-field>
+      <input
+        type="text"
+        id="name"
+        matInput
+        formControlName="name"
+        placeholder="Enter name"
+      />
+      <mat-icon matSuffix>badge</mat-icon>
+      <mat-error *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        <ng-container *ngIf="form.get('name')?.hasError('required')">
+          Name is required
+        </ng-container>
+        <ng-container *ngIf="form.get('address')?.hasError('pattern')">
+          Invalid name format
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <label for="address">Address:</label>
+    <mat-form-field>
+      <input
+        matInput
+        id="address"
+        placeholder="Customer Address"
+        formControlName="address"
+      />
+      <mat-icon matSuffix>home</mat-icon>
+      <mat-error
+        *ngIf="form.get('address')?.invalid && form.get('address')?.touched"
+      >
+        <ng-container *ngIf="form.get('address')?.hasError('required')">
+          Address is required
+        </ng-container>
+        <ng-container *ngIf="form.get('address')?.hasError('pattern')">
+          Invalid address format
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <label for="phone">Phone Number:</label>
+    <mat-form-field>
+      <input
+        matInput
+        id="phone"
+        placeholder="Customer Phone Number"
+        formControlName="phone"
+        type="number"
+        ngModel
+      />
+
+      <mat-icon matSuffix>phone</mat-icon>
+      <mat-error
+        *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched"
+      >
+        <ng-container *ngIf="form.get('phone')?.hasError('required')">
+          Phone number is required
+        </ng-container>
+        <ng-container *ngIf="form.get('phone')?.hasError('pattern')">
+          Invalid phone number format
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <div formArrayName="items">
+      <div
+        *ngFor="let item of getItemsControls(); let i = index"
+        [formGroupName]="i"
+      >
+        <label for="quantity">Quantity for {{ i + 1 }} product:</label>
+        <mat-form-field>
+          <input
+            matInput
+            type="number"
+            id="quantity"
+            formControlName="quantity"
+            placeholder="Quantity"
+            min="1"
+          />
+          <mat-error
+            *ngIf="
+              form.get('quantity')?.invalid && form.get('quantity')?.touched
+            "
+          >
+            <ng-container *ngIf="form.get('quantity')?.hasError('required')">
+              Quantity number is required
+            </ng-container>
+            <ng-container *ngIf="form.get('quantity')?.hasError('pattern')">
+              Invalid quantity number format
+            </ng-container>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="nameProduct"
+            placeholder="Name Product"
+            readonly
+            minlength="1"
+          />
+        </mat-form-field>
+      </div>
+      <!-- <mat-form-field *ngFor="let item of data.items">
+      <input
+        matInput
+        placeholder="Product Name"
+        [value]="item.product.name"
+        readonly
+      />
+    </mat-form-field> -->
+    </div>
+
+    <!-- <div *ngFor="let item of data.items; let i = index"> -->
+    <!-- <ng-container *ngIf="control(i) as ctrl">
+      <mat-form-field>
+        <input
+          matInput
+          [placeholder]="'Quantity ' + i"
+          [value]="i"
+          [formControl]="ctrl"
+        />
+      </mat-form-field>
+    </ng-container> -->
+    <!-- <mat-form-field>
+      <input
+        matInput
+        type="number"
+        formControlName="quantity"
+        [value]="item.quantity"
+      />
+    </mat-form-field> -->
+    <!-- <mat-form-field>
+      <input
+        matInput
+        type="number"
+        [formControlName]="'items[' + i + '].quantity'"
+      />
+    </mat-form-field> -->
+    <!--
+    <div formArrayName="items">
+      <div *ngFor="let item of itemsArray; let i = index" [formGroupName]="i">
+        <input type="number" formControlName="quantity" />
+        <button
+          type="button"
+          (click)="updateQuantity(i, item.get('quantity')?.value)"
+        >
+          Update Quantity
+        </button>
+      </div>
+    </div>
+    <div *ngFor="let item of itemsArray; let i = index" [formGroupName]="i">
+      <input type="number" formControlName="quantity" />
+
+    </div> -->
+
+    <!-- <div formArrayName="items">
+      <div *ngFor="let item of itemsArray; let i = index" [formGroupName]="i">
+        <input type="number" formControlName="quantity" />
+        <button
+          type="button"
+          (click)="updateQuantity(i, item.get('quantity')?.value)"
+        >
+          Update Quantity
+        </button>
+      </div>
+    </div> -->
+    <!-- <mat-form-field>
+      <input
+        matInput
+        placeholder="Product Name"
+        [value]="item.product.name"
+        readonly
+      />
+    </mat-form-field> -->
+    <!-- </div> -->
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <!-- <button mat-raised-button color="warn" (click)="onNoClick()">Close</button>
+    <button mat-button color="accent" (click)="updateOrder()">Save</button> -->
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Update Order
+    </button>
+    <button mat-button type="button" (click)="onNoClick()">Close</button>
+  </mat-dialog-actions>
+</form>
+
+<!--
+<form [formGroup]="form" (ngSubmit)="updateOrder()">
+  <div>
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      placeholder="Enter name"
+    />
+    <div *ngIf="form.get('name').invalid && form.get('name').touched">
+      <small *ngIf="form.get('name').errors?.required">Name is required</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="address">Address:</label>
+    <input
+      type="text"
+      id="address"
+      formControlName="address"
+      placeholder="Enter address"
+    />
+    <div *ngIf="form.get('address').invalid && form.get('address').touched">
+      <small *ngIf="form.get('address').errors?.required"
+        >Address is required</small
+      >
+    </div>
+  </div>
+
+  <div>
+    <label for="phone">Phone:</label>
+    <input
+      type="text"
+      id="phone"
+      formControlName="phone"
+      placeholder="Enter phone number"
+    />
+    <div *ngIf="form.get('phone').invalid && form.get('phone').touched">
+      <small *ngIf="form.get('phone').errors?.required"
+        >Phone number is required</small
+      >
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Update Order</button>
+  <button type="button" (click)="onNoClick()">Close</button>
+</form> -->

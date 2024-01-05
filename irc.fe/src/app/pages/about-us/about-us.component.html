@@ -1,0 +1,57 @@
+<section class="container height margin-top">
+  <div class="about-us-container height">
+    <div class="about-us-left">
+      <h2>Naslov About Us</h2>
+      <hr />
+      <p>
+        Ovde možete uneti tekst o vašem timu ili organizaciji. Podelite vašu
+        priču, vrednosti i ciljeve sa posetiocima vaše stranice.
+      </p>
+      <button class="btnHome" (click)="showEmailForm = true">Send Email</button>
+      <div class="email-form" *ngIf="showEmailForm">
+        <form #f="ngForm" (ngSubmit)="sendEmail(f)">
+          <div>
+            <mat-form-field>
+              <input
+                type="email"
+                matInput
+                placeholder="Your Email"
+                required
+                email
+                name="email"
+                ngModel
+                #emailInput="ngModel"
+              />
+              <mat-error *ngIf="emailInput.hasError('required')"
+                >Email is required</mat-error
+              >
+              <mat-error *ngIf="!emailInput.hasError('required')"
+                >Please use the correct email format / adress</mat-error
+              >
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field>
+              <textarea
+                matInput
+                placeholder="Message"
+                required
+                message
+                name="message"
+                ngModel
+                #messageInput="ngModel"
+              ></textarea>
+              <mat-error *ngIf="messageInput.hasError('required')"
+                >Message is required</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <button class="btnHome" [disabled]="f.invalid">Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="about-us-right">
+      <img src="../../../assets/images/about-us.png" alt="Slika" />
+    </div>
+  </div>
+</section>

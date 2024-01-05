@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="content">
+    <h2>Order Form</h2>
+    <form [formGroup]="checkoutForm">
+      <div>
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" formControlName="name" required />
+        <div
+          *ngIf="fc['name'].invalid && (fc['name'].dirty || fc['name'].touched)"
+          class="error"
+        >
+          <div *ngIf="fc['name'].errors?.['required']">Name is required.</div>
+        </div>
+      </div>
+
+      <div>
+        <label for="address">Address:</label><br />
+        <input type="text" id="address" formControlName="address" required />
+        <div
+          *ngIf="
+            fc['address'].invalid &&
+            (fc['address'].dirty || fc['address'].touched)
+          "
+          class="error"
+        >
+          <div *ngIf="fc['address'].errors?.['required']">
+            Address is required.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label for="postalCodeAndCity">Postal Code and Ciry:</label><br />
+        <input
+          type="text"
+          id="postalCodeAndCity"
+          formControlName="postalCodeAndCity"
+          required
+        />
+        <div
+          *ngIf="
+            fc['postalCodeAndCity'].invalid &&
+            (fc['postalCodeAndCity'].dirty || fc['postalCodeAndCity'].touched)
+          "
+          class="error"
+        >
+          <div *ngIf=" fc['postalCodeAndCity'].errors?.['required']">
+            Postal Code and Ciry is required.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label for="phone">Phone:</label><br />
+        <input type="text" id="phone" formControlName="phone" required />
+        <div
+          *ngIf="
+            fc['phone'].invalid && (fc['phone'].dirty || fc['phone'].touched)
+          "
+          class="error"
+        >
+          <div *ngIf="fc['phone'].errors?.['required']">Phone is required.</div>
+        </div>
+      </div>
+
+      <div>
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" formControlName="email" required />
+        <div
+          *ngIf="
+            fc['email'].invalid && (fc['email'].dirty || fc['email'].touched)
+          "
+          class="error"
+        >
+          <div *ngIf="fc['email'].errors?.['required']">Pmail is required.</div>
+        </div>
+      </div>
+    </form>
+
+    <table>
+      <tr>
+        <td colspan="5">
+          <h3>Order Items:</h3>
+        </td>
+      </tr>
+      <tr *ngFor="let item of items">
+        <a routerLink="/products/{{ item._id }}">
+          <td>
+            <img
+              src="../../../assets/images/product/{{ item.img }}"
+              [alt]="item.name"
+            />
+          </td>
+          <td class="padding-left">
+            {{ item.name }}
+          </td>
+        </a>
+        <td>
+          {{ item.price | currency : "RSD " : "symbol-narrow" : "1.2-2" }}
+        </td>
+        <td>
+          {{ item.quantity }}
+        </td>
+        <td>
+          {{ item.price | currency : "RSD " : "symbol-narrow" : "1.2-2" }}
+        </td>
+      </tr>
+      <!-- <tr>
+        <td colspan="3"></td>
+        <td>Shipping Fees:</td>
+        <td *ngFor="let fee of shippingFees">
+          <p>
+            +
+            {{
+              fee.shippingFee | currency : "RSD " : "symbol-narrow" : "1.2-2"
+            }}
+          </p>
+        </td>
+      </tr> -->
+      <tr>
+        <td colspan="3"></td>
+
+        <td><strong>Total: </strong></td>
+        <td>
+          <strong>{{
+            calculateTotalCost() | currency : "RSD " : "symbol-narrow" : "1.2-2"
+          }}</strong>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="button-container">
+    <div class="buttons">
+      <!-- [disabled]="checkoutForm.invalid" -->
+      <button
+        type="submit"
+        [disabled]="checkoutForm.invalid"
+        (click)="createOrder()"
+      >
+        Create Order
+      </button>
+    </div>
+  </div>
+</div>

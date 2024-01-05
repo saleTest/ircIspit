@@ -1,0 +1,14 @@
+.check-label {
+  display: flex;
+}
+
+.btn-area {
+  display: flex;
+  justify-content: center;
+  /* align-content: center; */
+  flex-direction: column;
+  padding-top: 5px;
+}
+/* .mat-mdc-raised-button:not(:disabled) {
+  background-color: var(--color-btn);
+} */

@@ -1,0 +1,11 @@
+<ng-container *ngIf="router.url === '/simulation'; else otherContent">
+  <app-mouse-simulation></app-mouse-simulation>
+</ng-container>
+
+<ng-template #otherContent>
+  <div [ngClass]="{ 'light-theme': !isDarkMode, 'dark-theme': isDarkMode }">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
+</ng-template>

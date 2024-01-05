@@ -1,0 +1,264 @@
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-search-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+header {
+  background-color: #f8f8f8;
+  padding: 10px 0 10px 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ul.header-social-container {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+ul.header-social-container li {
+  margin-right: 10px;
+}
+
+.social-link img {
+  width: 27px;
+  height: auto;
+  background-color: #e3e3e3;
+  border-radius: 10px;
+  padding: 4px;
+}
+.social-link img:hover {
+  background-color: #6c757d;
+}
+
+.header-news {
+  text-align: right;
+}
+
+.header-news p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.header-news b {
+  color: #ff4500;
+}
+hr {
+  margin: 0.4rem 0 0 0;
+}
+
+.nav-menu {
+  background-color: #f8f8f8;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+}
+.nav-menu a {
+  color: black;
+  text-transform: uppercase;
+}
+.nav-menu a:hover {
+  background-color: #8a8a8a;
+  color: white;
+}
+.search-field {
+  padding: 3px 12px;
+  border: 1px solid #ccc;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width: 50rem;
+}
+
+.search-btn {
+  background-color: #e3e3e3;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.search-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.img-header {
+  width: 36px;
+  height: auto;
+  margin: 8px;
+  background-color: #e3e3e3;
+  border-radius: 10px;
+  padding: 4px;
+}
+.img-header:hover {
+  /* background-color: #8a8a8a; */
+  border: 2px solid #8a8a8a;
+}
+
+.cart-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-notification {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #f8f8f8;
+  color: #333;
+  padding: 6px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/*
+@media only screen and (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  ul.header-social-container {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .header-news {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .mat-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-search-container {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-field {
+    width: 100%;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-menu a {
+    flex-basis: 50%;
+    margin-bottom: 5px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  ul.header-social-container {
+    justify-content: flex-start;
+    margin-bottom: 0;
+  }
+
+  .header-news {
+    text-align: right;
+    margin-bottom: 0;
+  }
+
+  .mat-toolbar {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .header-search-container {
+    flex-grow: 1;
+    margin: 0 10px;
+  }
+
+  .search-field {
+    width: 400px;
+  }
+
+  .spacer {
+    flex-grow: 1;
+  }
+
+  .nav-menu {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
+
+  .nav-menu a {
+    margin-left: 20px;
+  }
+}
+*/

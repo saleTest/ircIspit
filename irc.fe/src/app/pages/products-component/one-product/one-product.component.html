@@ -1,0 +1,86 @@
+<!-- <div class="product-details" *ngIf="product">
+  <div class="product-content">
+    <div class="product-info">
+      <h2 class="product-name">{{ product.name }}</h2>
+      <p class="product-description">{{ product.description }}</p>
+      <p class="product-price">Price: {{ product.price }}</p>
+    </div>
+    <div class="product-image">
+      <img
+        src="../../../assets/images/product/{{ product.img }}"
+        alt="{{ product.name }}"
+      />
+    </div>
+  </div>
+
+</div> -->
+<div class="container">
+  <div class="product-content" *ngIf="product">
+    <div class="product-image">
+      <img
+        src="../../../assets/images/product/{{ product.img }}"
+        alt="{{ product.name }}"
+      />
+    </div>
+    <div class="product-detail">
+      <h2>{{ product.name }}</h2>
+      <p class="product-code">Product Code: {{ product.productCode }}</p>
+      <div class="rating">
+        <!-- Rating: -->
+        <span [innerHTML]="getProductRatingStars(product.rating)"> </span>
+      </div>
+      <div class="price-content">
+        <p class="price">{{ product.price | number : "1.2-2" }}RSD</p>
+
+        <p class="price-old">{{ product.price * 1.1 | number : "1.2-2" }}RSD</p>
+      </div>
+      <div class="sectionFlex">
+        <label for="color">Color:</label>
+        <select id="color">
+          <option value="Black">Black</option>
+          <option value="White">White</option>
+        </select>
+        <label for="size">Size:</label>
+        <select id="size">
+          <option value="38">38</option>
+          <option value="40">40</option>
+          <option value="43">43</option>
+        </select>
+      </div>
+      <div class="sectionFlex">
+        <label for="quantity">Quantity:</label>
+        <input
+          type="number"
+          id="quantity"
+          value="1"
+          min="1"
+          class="input-quantity"
+        />
+      </div>
+      <button
+        *ngIf="tokenBool"
+        class="btnAdd"
+        id="addToCartBtn"
+        (click)="addToCart(product)"
+      >
+        Add to Cart
+      </button>
+      <button
+        *ngIf="!tokenBool"
+        class="btnAdd"
+        id="addToCartBtn"
+        routerLink="/auth"
+      >
+        Go To Login
+      </button>
+      <div class="description">
+        <p><b>Description:</b></p>
+        <p>
+          {{ product.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <app-comment></app-comment>
+</div>

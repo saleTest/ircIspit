@@ -1,0 +1,118 @@
+<header>
+  <div class="top-header">
+    <div class="container">
+      <ul class="header-social-container">
+        <li>
+          <a href="#" class="social-link">
+            <!-- <ion-icon name="logo-facebook"></ion-icon> -->
+            <img src="../../../assets/social-media/logo-facebook.svg" />
+          </a>
+        </li>
+        <li>
+          <a href="#" class="social-link">
+            <img src="../../../assets/social-media/logo-instagram.svg" />
+          </a>
+        </li>
+        <li>
+          <a href="#" class="social-link">
+            <img src="../../../assets/social-media/logo-twitter.svg" />
+          </a>
+        </li>
+      </ul>
+
+      <div class="header-news">
+        <p>
+          <b>Free Shipping</b>
+          This Week Order Over - $55
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- <hr /> -->
+</header>
+
+<mat-toolbar class="mat-evelvation-z12">
+  <span class="logo">Shoes Shop</span>
+
+  <div class="header-search-container">
+    <input
+      type="search"
+      name="search"
+      class="search-field"
+      (input)="onSearchChange($event)"
+      placeholder="Enter your product name..."
+    />
+    <button class="search-btn">
+      <img src="../../../assets/images/search-outline.svg" />
+    </button>
+  </div>
+
+  <!-- <div class="spacer"></div> -->
+  <div (click)="onToggleDarkMode()">
+    <mat-slide-toggle [checked]="isDarkMode"></mat-slide-toggle>
+  </div>
+
+  <div class="dropdown" *ngIf="this.token">
+    <button class="dropbtn">
+      <img
+        class="img-header"
+        src="../../../assets/images/person-circle-outline.svg"
+        alt="Profile"
+      />
+      Profile
+    </button>
+    <div class="dropdown-content" *ngIf="this.token">
+      <a routerLink="/profile">Profile</a>
+      <a routerLink="/order-history">Order History</a>
+      <!-- <a *ngIf="isAdmin" routerLink="/order-history">Ordered</a> -->
+      <a *ngIf="isAdmin" routerLink="/addProduct">Add Order</a>
+      <a *ngIf="isAdmin" routerLink="/updateProduct">Update Order</a>
+
+      <!-- Dodajte ostale opcije kao <a routerLink="/ruta">Naziv opcije</a> -->
+    </div>
+  </div>
+  <!-- <a routerLink="/profile" *ngIf="this.token">
+    <img
+      class="img-header"
+      src="../../../assets/images/person-circle-outline.svg"
+      alt="Profile"
+    />
+  </a> -->
+  <!-- <li *ngIf="isAdmin"><a routerLink="/admin">Admin Panel</a></li> -->
+  <a routerLink="/">
+    <img
+      class="img-header"
+      src="../../../assets/images/bookmarks-outline.svg"
+      alt="Bookmarks"
+    />
+  </a>
+
+  <div class="cart-icon-container">
+    <a routerLink="/cart">
+      <img
+        class="img-header cart-icon"
+        src="../../../assets/images/cart-outline.svg"
+        alt="Cart"
+      />
+      <span *ngIf="cartQuantity" class="cart-notification">{{
+        cartQuantity
+      }}</span>
+    </a>
+  </div>
+  <a mat-raised-button routerLink="/auth" *ngIf="!this.token">Sign Up</a>
+  <a
+    mat-raised-button
+    color="warn"
+    routerLink="/welcome"
+    (click)="logout()"
+    *ngIf="this.token"
+    >Logout</a
+  >
+</mat-toolbar>
+
+<div class="nav-menu">
+  <a mat-button routerLink="">Home</a>
+  <a mat-button routerLink="/about-us">About us</a>
+  <!-- <a mat-button routerLink=""></a> -->
+  <!-- <a mat-button routerLink=""></a> -->
+</div>

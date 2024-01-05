@@ -1,0 +1,135 @@
+/* Stilizacija proizvoda
+.product-details {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.product-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-info {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.product-image {
+  flex: 1;
+  text-align: center;
+}
+
+.product-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-name {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.product-description {
+  font-size: 16px;
+  color: #555;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #27ae60;
+} */
+.container {
+  margin: 5rem auto 5rem auto;
+}
+.product-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-detail {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 50rem;
+  max-width: 50rem;
+}
+
+.product-content h2 {
+  margin-top: 0;
+}
+.product-detail .price-content {
+  display: flex;
+  margin-top: 1rem;
+}
+.product-detail .price {
+  font-size: 18px;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+.product-detail .price-old {
+  margin-left: 2rem;
+  color: #525252;
+  text-decoration: line-through;
+}
+.product-detail select,
+.product-detail input[type="number"],
+.product-detail button {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.sectionFlex {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.input-quantity {
+  width: 50px;
+}
+
+.product-image {
+  margin-right: 3rem;
+}
+
+.product-image img {
+  width: 100%;
+  max-width: 50rem;
+}
+
+.description {
+  padding-top: 2.5rem;
+}
+
+.product-code {
+  font-size: small;
+  color: #525252;
+}
+.btnAdd {
+  min-width: 5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  /* padding: 0.8rem 3.2rem; */
+  border-radius: 9px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: var(--color-btn);
+}
+.btnAdd:hover {
+  color: white;
+  background-color: var(--color-btn-hover);
+}

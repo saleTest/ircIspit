@@ -1,0 +1,125 @@
+<!-- <form>
+  <input
+    type="text"
+    [(ngModel)]="name"
+    name="text"
+    placeholder="New Name"
+  /><br />
+  <input
+    type="text"
+    [(ngModel)]="email"
+    name="email"
+    placeholder="New email"
+  /><br />
+  <input
+    type="password"
+    [(ngModel)]="password"
+    name="password"
+    placeholder="New Password"
+  /><br />
+  <button type="button" (click)="updateProfile()">Update Profile</button>
+</form> -->
+
+<section class="container height margin-top">
+  <h2>Update Profile</h2>
+  <form
+    action=""
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <mat-label *ngIf="errorExists" class="error">{{ errorText }}</mat-label>
+    <!-- fullName -->
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="Your Full Name"
+        required
+        name="name"
+        [(ngModel)]="name"
+        ngModel
+        #fullName="ngModel"
+      />
+      <mat-icon matSuffix>perm_identity</mat-icon>
+      <mat-error *ngIf="fullName.hasError('required')"
+        >Full Name is required</mat-error
+      >
+    </mat-form-field>
+    <!-- Email -->
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        placeholder="Your Email"
+        required
+        email
+        name="email"
+        ngModel
+        [(ngModel)]="email"
+        #emailInput="ngModel"
+      />
+      <mat-error *ngIf="emailInput.hasError('required')"
+        >Email is required</mat-error
+      >
+      <mat-error *ngIf="!emailInput.hasError('required')"
+        >Please use the correct email format / adress</mat-error
+      >
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+    <!-- Password -->
+    <mat-form-field>
+      <input
+        type="password"
+        matInput
+        placeholder="Your password"
+        ngModel
+        name="password"
+        required
+        password
+        #passInput="ngModel"
+        minlength="8"
+      />
+      <mat-icon matSuffix>lock</mat-icon>
+
+      <mat-hint align="end">{{ passInput.value?.length }} / 8</mat-hint>
+      <mat-error *ngIf="passInput.value?.length != 8"
+        >Password must be of length 8</mat-error
+      >
+    </mat-form-field>
+    <!-- Re Password -->
+    <mat-form-field>
+      <input
+        type="password"
+        matInput
+        placeholder="Your password"
+        ngModel
+        name="passwordConfirm"
+        required
+        passwordConfirm
+        #repassInput="ngModel"
+        minlength="8"
+      />
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-error *ngIf="repassInput.hasError('required')">
+        Re-Enter Password is required
+      </mat-error>
+      <!-- ne radi provera -->
+      <mat-error
+        *ngIf="repassInput.value && passInput.value !== repassInput.value"
+        >Passwords do not match</mat-error
+      >
+    </mat-form-field>
+
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="f.invalid"
+      class="login-button"
+    >
+      Update Profile
+    </button>
+  </form>
+</section>
