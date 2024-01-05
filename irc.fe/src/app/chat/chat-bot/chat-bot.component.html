@@ -1,0 +1,20 @@
+<div class="chat-container">
+  <div class="chat-history">
+    <div
+      *ngFor="let message of chatHistory"
+      class="message"
+      [ngClass]="{ 'user-message': message.user, 'bot-message': !message.user }"
+    >
+      {{ message.message }}
+    </div>
+  </div>
+  <div class="chat-input">
+    <input
+      type="text"
+      placeholder="Unesite poruku..."
+      [(ngModel)]="userMessage"
+      (input)="onInputChange($event)"
+    />
+    <button (click)="sendMessage()">Pošalji</button>
+  </div>
+</div>

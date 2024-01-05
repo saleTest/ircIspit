@@ -15,6 +15,7 @@ import { OrderCheckoutComponent } from './pages/order-checkout/order-checkout.co
 import { OrderHistoryComponent } from './pages/order-history/order-history.component';
 import { UpdateProductComponent } from './pages/update-product/update-product.component';
 import { MouseSimulationComponent } from './mouseMovement/mouse-simulation/mouse-simulation.component';
+import { ChatBotComponent } from './chat/chat-bot/chat-bot.component';
 
 export const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -34,6 +35,7 @@ export const routes: Routes = [
   { path: 'order-history', component: OrderHistoryComponent },
   { path: 'simulation', component: MouseSimulationComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'bot', component: ChatBotComponent },
   { path: '**', component: WelcomeComponent },
 ];
 
