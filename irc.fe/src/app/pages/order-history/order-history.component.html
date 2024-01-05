@@ -18,7 +18,7 @@
 <div class="container">
   <div *ngFor="let order of orderHistory" class="card my-3">
     <div
-      [ngClass]="{ 'text-black-50': order.order.status === 'pristiglo',}"
+      [ngClass]="{ 'text-black-50': order.order.status === 'pristiglo' }"
       class="card-body"
     >
       <div class="d-flex justify-content-between mb-2">
@@ -132,7 +132,9 @@
       <p class="card-text"><strong>Items:</strong></p>
       <ul class="list-group">
         <li *ngFor="let item of order.items" class="list-group-item">
-          <a [routerLink]="'/products/' + item._id">
+          <!-- <a [routerLink]="'/products/' + item._id"> -->
+          <!-- <p>{{ item }}</p> -->
+          <a [routerLink]="['/products/', item.product._id]">
             <p><strong>Name Product:</strong> {{ item.product.name }}</p>
             <p><strong>Price:</strong> {{ item.product.price }}</p>
             <p><strong>Quantity:</strong> {{ item.quantity }}</p>
