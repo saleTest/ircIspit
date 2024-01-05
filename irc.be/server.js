@@ -115,7 +115,7 @@ app.post('/api/login', async (req, res) => {
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (!validPassword) {
-      return res.status(401).send('Invalid password');
+      return res.status(401).send('Check your email and password!');
     }
 
     const token = jwt.sign({ id: user._id, role: user.role }, 'secret_key');
@@ -178,22 +178,15 @@ app.put('/api/update/:id', async (req, res) => {
 
     console.log(userId);
     console.log(email, password);
+    // console.log(typeof email);
+    // console.log(typeof password);
 
-    // Provjera da li su svi potrebni podaci poslani
-    // if (!name && !email && !password) {
-    //   return res
-    //     .status(400)
-    //     .send('Please provide at least one field to update');
-    // }
-
-    // Provjera da li korisnik postoji
     const user = await User.findById(userId);
 
     if (!user) {
       return res.status(404).send('User not found');
     }
 
-    // Ažuriranje korisničkih podataka samo ako su poslani
     if (name) {
       user.username = name;
     }
@@ -206,7 +199,7 @@ app.put('/api/update/:id', async (req, res) => {
     }
 
     await user.save();
-    res.status(200).send('User updated successfully');
+    res.status(200).json({ message: 'User updated successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

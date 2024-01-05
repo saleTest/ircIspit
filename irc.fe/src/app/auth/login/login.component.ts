@@ -4,13 +4,15 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { MaterialModule } from '../../material.module';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { TokenServiceService } from '../token-service.service';
+import { ToastrService } from 'ngx-toastr';
+import { AppModule } from '../../app.module';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, MaterialModule],
+  imports: [CommonModule, FormsModule, MaterialModule, AppModule],
+  providers: [ToastrService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -24,7 +26,8 @@ export class LoginComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private tokenService: TokenServiceService
+    private tokenService: TokenServiceService,
+    private toastrService: ToastrService
   ) {}
 
   onSubmit(form: NgForm) {
@@ -50,9 +53,14 @@ export class LoginComponent {
           localStorage.setItem('token', response.token);
           // this.tokenService.setToken(response.token);
           this.router.navigate(['/']);
+          this.toastrService.success('Welcome!');
         },
         (error) => {
-          // Prikazivanje poruke o neuspješnom logiranju
+          // Prikazivanje poruke
+          if (error && error.error) {
+            this.toastrService.error(error.error, 'Try again!');
+            // console.log('Poruka o grešci:', error.error);
+          }
         }
       );
   }

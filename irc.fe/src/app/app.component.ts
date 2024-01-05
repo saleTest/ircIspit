@@ -53,20 +53,20 @@ export class AppComponent {
     this.darkModeService.toggleDarkMode();
   }
 
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent) {
-    const mouseX = event.clientX;
-    const mouseY = event.clientY;
+  // @HostListener('document:mousemove', ['$event'])
+  // onMouseMove(event: MouseEvent) {
+  //   const mouseX = event.clientX;
+  //   const mouseY = event.clientY;
 
-    this.http
-      .post('http://localhost:3000/api/mouse-movement', {
-        x: mouseX,
-        y: mouseY,
-      })
-      .subscribe((response) => {
-        console.log('Podaci poslati na server:', response);
-      });
-  }
+  //   this.http
+  //     .post('http://localhost:3000/api/mouse-movement', {
+  //       x: mouseX,
+  //       y: mouseY,
+  //     })
+  //     .subscribe((response) => {
+  //       console.log('Podaci poslati na server:', response);
+  //     });
+  // }
 
   // isDarkMode = false;
 

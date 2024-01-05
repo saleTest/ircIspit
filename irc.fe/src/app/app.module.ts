@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
@@ -26,7 +26,7 @@ import { AddProductComponent } from './pages/add-product/add-product.component';
     AddProductComponent,
     ReactiveFormsModule,
   ],
-  providers: [FormControl],
+  providers: [FormControl, ToastrService],
   bootstrap: [],
 })
 export class AppModule {}

@@ -5,11 +5,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import * as jwt_decode from 'jwt-decode';
 import { MaterialModule } from '../../material.module';
+import { AppModule } from '../../app.module';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, MaterialModule],
+  imports: [CommonModule, FormsModule, MaterialModule, AppModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
@@ -28,27 +30,31 @@ export class ProfileComponent {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      const tokenPayload = token.split('.')[1]; // Get the payload part of the token
-      const decodedPayload = tokenPayload ? atob(tokenPayload) : null; // Decode the Base64 encoded string
+      const tokenPayload = token.split('.')[1];
+      const decodedPayload = tokenPayload ? atob(tokenPayload) : null;
 
       this.decodedToken = decodedPayload ? JSON.parse(decodedPayload) : null;
-      console.log(this.decodedToken); // Display the decoded token information
+      // console.log(this.decodedToken);
 
       if (this.decodedToken) {
-        this.userId = this.decodedToken.id; // Accessing 'id' from the decoded token
+        this.userId = this.decodedToken.id;
         this.fetchUserData();
-        console.log('User ID:', this.userId); // Display the user ID
+        // console.log('User ID:', this.userId); // Display the user ID
       }
     } else {
-      console.log('Token not found in Local Storage');
+      // console.log('Token not found in Local Storage');
+      this.toastrService.warning(
+        'Token not found in Local Storage',
+        'Please reload page!'
+      );
     }
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toastrService: ToastrService) {}
 
   updateProfile() {
     if (this.validateInputs()) {
-      console.log(this.email, this.password);
+      // console.log(this.email, this.password);
       this.http
         .put<any>(`http://localhost:3000/api/update/${this.userId}`, {
           name: this.name,
@@ -57,14 +63,18 @@ export class ProfileComponent {
         })
         .subscribe(
           (response) => {
-            console.log(response, 'Uspesno');
+            // console.log(response, 'Uspesno');
+            this.toastrService.success(response.message);
           },
           (error) => {
-            console.log(error.message);
+            // console.log(error.message);
+            // console.error('Error:', error);
+            if (error) this.toastrService.error(error.message);
           }
         );
     } else {
-      console.log('Molimo Vas da unesete ispravne podatke.');
+      this.toastrService.warning('Please enter correct information.');
+      // console.log('Please enter correct information.');
     }
   }
 
@@ -73,15 +83,15 @@ export class ProfileComponent {
       .get<any>(`http://localhost:3000/api/user/${this.userId}`)
       .subscribe(
         (userData) => {
-          console.log('User Data:', userData);
+          // console.log('User Data:', userData);
           const { username, email } = userData.user;
           // console.log(username, email);
           this.name = username;
           this.email = email;
-          // Ovdje možete manipulirati podacima kako želite (npr. prikazati na korisničkom sučelju)
         },
         (error) => {
           console.error('Error fetching user data:', error);
+          this.toastrService.error('Error fetching user data:', error);
         }
       );
   }
@@ -101,17 +111,20 @@ export class ProfileComponent {
 
   validateInputs(): boolean {
     if (!this.name || this.name.trim() === '') {
-      console.log('Molimo Vas da unesete ime.');
+      // console.log('Please enter a name.');
+      this.toastrService.error('Please enter a name.');
       return false;
     }
 
     if (!this.email || this.email.trim() === '') {
-      console.log('Molimo Vas da unesete ispravnu email adresu.');
+      this.toastrService.error('Please enter the correct email address.');
+      // console.log('Please enter the correct email address.');
       return false;
     }
 
     if (!this.password || this.password.trim() === '') {
-      console.log('Molimo Vas da unesete ispravni password.');
+      this.toastrService.error('Please enter the correct password.');
+      // console.log('Please enter the correct password.');
       return false;
     }
 
