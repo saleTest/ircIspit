@@ -49,3 +49,28 @@
 #             dispatcher.utter_message(template="utter_show_login_button")
         
 #         return []
+
+from typing import Any, Text, Dict, List
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+import requests
+
+class ActionSendToAngular(Action):
+    def name(self) -> Text:
+        return "action_send_to_angular"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Implementirajte logiku slanja podataka na vaš Angular URL
+        message = tracker.latest_message.get('text')
+
+        # Primjer slanja POST zahtjeva
+        url = "http://localhost:5005/webhooks/rest/webhook"  # Vaš Angular URL
+        payload = {"message": message}
+        response = requests.post(url, json=payload)
+
+        # Ovdje možete obraditi odgovor ako je potrebno
+        dispatcher.utter_message(text="Uspješno poslano na Angular aplikaciju.")
+
+        return []

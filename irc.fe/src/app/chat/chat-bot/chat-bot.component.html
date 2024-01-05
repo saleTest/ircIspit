@@ -13,8 +13,8 @@
       type="text"
       placeholder="Unesite poruku..."
       [(ngModel)]="userMessage"
-      (input)="onInputChange($event)"
+      (keyup.enter)="sendMessage($event)"
     />
-    <button (click)="sendMessage()">Pošalji</button>
+    <button (click)="sendMessage($event)">Pošalji</button>
   </div>
 </div>
