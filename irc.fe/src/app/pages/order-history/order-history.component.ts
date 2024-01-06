@@ -81,6 +81,27 @@ export class OrderHistoryComponent {
     }
   }
 
+  confirmProductStatus(orderId: number) {
+    const confirmProduct = window.confirm('Da li je prozivod stigao?');
+    if (confirmProduct) {
+      this.http
+        .patch(`http://localhost:3000/api/confirmProductStatus/${orderId}`, {
+          status: 'pristiglo',
+        })
+        .subscribe(
+          (response) => {
+            console.log('Proizcod uspesno dostavljen', response);
+          },
+          (error) => {
+            console.error(
+              'Greška prilikom potvrdjivanje proizvoda:',
+              error.message
+            );
+          }
+        );
+    }
+  }
+
   openUpdateOrderDialog(orderId: number) {
     // console.log(orderId);
 

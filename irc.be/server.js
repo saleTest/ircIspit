@@ -444,6 +444,29 @@ app.patch('/api/cancelProductStatus/:id', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+app.patch('/api/confirmProductStatus/:id', async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+
+    if (!order)
+      return res.status(404).json({ error: 'Product does not exist!' });
+
+    const { status } = req.body;
+    if (status !== undefined) {
+      order.status = status;
+      await order.save();
+      return res.status(200).json({ message: 'Product status updated', order });
+    } else {
+      return res
+        .status(400)
+        .json({ error: 'Missing or invalid status in request body' });
+    }
+  } catch (error) {
+    // console.error('Error occurred:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.post('/api/add-product', verifyToken, async (req, res) => {
   try {
     const createdBy = req.userId;
@@ -689,7 +712,7 @@ const orderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['u toku', 'zavrseno', 'otkazano'],
+    enum: ['u toku', 'zavrseno', 'pristiglo'],
   },
   createdAt: {
     type: Date,

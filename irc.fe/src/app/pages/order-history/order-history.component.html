@@ -38,6 +38,12 @@
               <i class="fa fa-trash">Delete</i>
             </button> -->
             <mat-icon
+              *ngIf="order.order.status === 'u toku'"
+              class="custom-icon green"
+              (click)="confirmProductStatus(order.order._id)"
+              >done</mat-icon
+            >
+            <mat-icon
               class="custom-icon green"
               (click)="openUpdateOrderDialog(order.order._id)"
               >update</mat-icon
