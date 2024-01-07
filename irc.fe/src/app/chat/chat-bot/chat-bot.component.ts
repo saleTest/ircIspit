@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RasaServiceService } from '../rasa-service.service';
 import { AppModule } from '../../app.module';
 import { FormsModule } from '@angular/forms';
-import * as $ from 'jquery';
 import { HttpClient } from '@angular/common/http';
 import { TokenServiceService } from '../../auth/token-service.service';
 import { MaterialModule } from '../../material.module';
