@@ -3,34 +3,66 @@ version: "3.1"
 intents:
   - greet
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - thanks
+  - ask_name
+  - shoes
+  - order_shoes
+  - order_footwear
+  - inform_footwear
+  # - show_carousel
+  # - ask_link
+  - problem
+  - inquire_price
+  - cancel_order
+  - inquire_shipping
+  - inquire_return_policy
+
+entities:
+  - shoes
 
 responses:
   utter_greet:
-    - text: "Hey! How are you?"
-
-  utter_cheer_up:
-    - text: "Here is something to cheer you up:"
-      image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-    - text: "Did that help you?"
-
-  utter_happy:
-    - text: "Great, carry on!"
+    - text: "Hey! How can I help you?"
 
   utter_goodbye:
     - text: "Bye"
 
-  utter_iamabot:
-    - text: "I am a bot, powered by Rasa."
+  utter_thanks:
+    - text: "You're welcome!"
+
+  utter_ask_name:
+    - text: "Welcome to the SHOES SHOP! My name is Assistant Supports."
+
+  utter_shoe_offers:
+    - text: "Here are some offers for shoes [link](http://localhost:4200/products)"
+
+  utter_problem:
+    - text: "Please contact our support on email:[ nekiEmail@email.com ] or phone: [ 0800 1111 1111 ]"
+
+  utter_inquire_price:
+    - text: "The price depends on the product you choose."
+
+  utter_cancel_order:
+    - text: "Folow steps: Profile->Order History->Find Order->Cancel."
+
+  utter_inquire_shipping:
+    - text: "Shipping is FREE. The delivery person depends on who is free."
+
+  utter_inquire_return_policy:
+    - text: "You can return the product within 14 days after you accepted the package."
+
+  # utter_link_button:
+  #   - text: "Klikni [ovde](https://www.link.com) da biste posetili link."
+  #     buttons:
+  #       - title: "Click"
+  #         payload: "/open_link"
 
 actions:
-  - action_send_to_angular
+  - action_extract_shoe_entity
+  - action_order_footwear
+  - action_confirm_order
+  # - action_show_carousel
+  # - action_open_link
 
 session_config:
   session_expiration_time: 60

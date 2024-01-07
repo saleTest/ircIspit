@@ -50,6 +50,7 @@ export class LoginComponent {
       .subscribe(
         (response) => {
           this.tokenService.setToken(response.token);
+          // console.log(response.token);
           localStorage.setItem('token', response.token);
           // this.tokenService.setToken(response.token);
           this.router.navigate(['/']);

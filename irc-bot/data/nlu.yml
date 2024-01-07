@@ -1,91 +1,135 @@
 version: "3.1"
 
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
 
-- intent: goodbye
-  examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
 
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+  - intent: thanks
+    examples: |
+      - ty
+      - thanks
+      - thanks you
+      - appreciate it
+      - many thanks
 
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+  - intent: ask_name
+    examples: |
+      - Please give me your name
+      - What is your name
+      - Please provide your information
+      - can you tell me your name
 
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+  - intent: shoes
+    examples: |
+      - I am looking for shoes
+      - Show me shoe offers
+      - Can you help me with shoes?
+      - I want to buy new shoes
+      - Do you have any shoes for sale?
 
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+  - intent: order_shoes
+    examples: |
+      - I want to order a [shoes](shoes)
+      - can i get a [shoes](shoes)
+      - let's order a [shoes](shoes)
+      - how about a [shoes](shoes)
 
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+  - intent: order_footwear
+    examples: |
+      - I want to order a footwear
+      - can i get some footwear, please
+      - let's order some footwear
+
+  - intent: inform_footwear
+    examples: |
+      - [nike](shoes)
+      - [rebook](shoes)
+      - [adidas](shoes)
+
+  - intent: problem
+    examples: |
+      - help
+      - support
+      - problem
+      - have problem
+      - i have a problem
+      - facing an issue
+      - trouble
+      - experiencing a difficulty
+      - encountering a problem
+      - issue
+      - complication
+      - something's wrong
+
+  - intent: inquire_price
+    examples: |
+      - What is the price?
+      - How much does it cost?
+      - Can you tell me the price?
+      - What's the price tag?
+      - Price?
+      - Cost?
+
+  - intent: cancel_order
+    examples: |
+      - I want to cancel my order
+      - Please cancel my order
+      - Cancel order
+      - I changed my mind, cancel it
+      - Revoke my order
+
+  - intent: inquire_shipping
+    examples: |
+      - shipping
+      - shipping cost
+      - How does shipping work?
+      - Shipping methods?
+      - Delivery options?
+      - Tell me about shipping
+
+  - intent: inquire_return_policy
+    examples: |
+      - What's your return policy?
+      - Return procedure?
+      - Can I return the item?
+      - Policy on returns?
+
+  # - intent: show_carousel
+  #   examples: |
+  #     - buy new shoes
+  #     - Display shoes
+  #     - Can I see some shoes?
+  #     - Show shoes
+  #     - I want to view shoes
+  #     - i want to buy shoes
+
+  # - intent: ask_link
+  #   examples: |
+  #     - link
+  #     - link me

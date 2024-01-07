@@ -1,30 +1,65 @@
 version: "3.1"
 
 stories:
+  - story: ask name
+    steps:
+      - intent: ask_name
+      - action: utter_ask_name
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - story: shoes
+    steps:
+      - intent: shoes
+      - action: utter_shoe_offers
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
+  - story: Order my shoe
+    steps:
+      - intent: order_footwear
+      - action: action_order_footwear
+      - intent: inform_footwear
+      - action: action_confirm_order
+      - intent: thanks
 
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - story: Express Thanks
+    steps:
+      - intent: thanks
+      - action: utter_thanks
+
+  - story: order_shoes
+    steps:
+      - intent: order_shoes
+      - action: action_order_footwear
+
+  - story: have a problem
+    steps:
+      - intent: problem
+      - action: utter_problem
+
+  - story: price
+    steps:
+      - intent: inquire_price
+      - action: utter_inquire_price
+
+  - story: cancel_order
+    steps:
+      - intent: cancel_order
+      - action: utter_cancel_order
+
+  - story: inquire_shipping
+    steps:
+      - intent: inquire_shipping
+      - action: utter_inquire_shipping
+
+  - story: inquire_return_policy
+    steps:
+      - intent: inquire_return_policy
+      - action: utter_inquire_return_policy
+
+  # - story: Show Carousel
+  #   steps:
+  #     - intent: show_carousel
+  #     - action: action_show_carousel
+
+  # - story: Korisnik želi da vidi link
+  #   steps:
+  #     - intent: ask_link
+  #     - action: utter_link_button

@@ -17,12 +17,12 @@ export class TokenServiceService {
 
   private tokenSubject = new BehaviorSubject<string>('');
 
-  setToken(token: string) {
+  setToken(token: string): void {
     this.tokenSubject.next(token);
-    // console.log(token);
+    localStorage.setItem('token', token);
   }
 
-  getToken() {
-    return this.tokenSubject.asObservable();
+  getToken(): BehaviorSubject<string> {
+    return this.tokenSubject;
   }
 }

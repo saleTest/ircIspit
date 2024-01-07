@@ -14,6 +14,7 @@ import { AddProductComponent } from './pages/add-product/add-product.component';
 import { ToastrService } from 'ngx-toastr';
 import { FooterComponent } from './components/footer/footer.component';
 import { MouseSimulationComponent } from './mouseMovement/mouse-simulation/mouse-simulation.component';
+import { ChatBotComponent } from './chat/chat-bot/chat-bot.component';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ import { MouseSimulationComponent } from './mouseMovement/mouse-simulation/mouse
     ProductsComponentComponent,
     AddProductComponent,
     MouseSimulationComponent,
+    ChatBotComponent,
   ],
   // providers: [ToastrService],
   templateUrl: './app.component.html',

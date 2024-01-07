@@ -1,4 +1,4 @@
-<div class="chat-container">
+<!-- <div class="chat-container">
   <div class="chat-history">
     <div
       *ngFor="let message of chatHistory"
@@ -16,5 +16,61 @@
       (keyup.enter)="sendMessage($event)"
     />
     <button (click)="sendMessage($event)">Pošalji</button>
+  </div>
+</div> -->
+<div class="container">
+  <button
+    (click)="toggleChatWidget()"
+    type="button"
+    class="btn btn-light rounded-circle position-fixed chat-sign-button"
+    style="bottom: 50px; right: 50px"
+  >
+    <mat-icon class="icon">chat</mat-icon>
+  </button>
+
+  <!-- Sadrzaj četa -->
+  <div
+    class="card position-fixed shadow"
+    [ngClass]="{ 'd-none': hideChatWidget }"
+    style="bottom: 130px; right: 20px; width: 350px"
+  >
+    <div class="card-header bg-primary text-white">
+      <span class="title">Chat</span>
+      <button
+        (click)="hideChatWidget = true"
+        type="button"
+        class="btn-close float-end"
+        aria-label="Zatvori"
+      ></button>
+    </div>
+
+    <!-- Mesto prikazivanja poruka -->
+    <div class="card-body" id="chat-widget-messages">
+      <div
+        *ngFor="let message of chatMessages"
+        class="message-container"
+        [ngClass]="{
+          'bot-message': message.isBot,
+          'user-message': !message.isBot
+        }"
+      >
+        <div *ngIf="message.isBot" class="message bot">
+          <strong>ChatBot:</strong> <span [innerHTML]="message.text"></span>
+        </div>
+        <div *ngIf="!message.isBot" class="message user">
+          <strong>Vi:</strong> {{ message.text }}
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Unesite poruku"
+        [(ngModel)]="userInput"
+        (keypress)="sendMessage($event)"
+      />
+    </div>
   </div>
 </div>
