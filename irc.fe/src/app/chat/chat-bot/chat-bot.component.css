@@ -1,3 +1,6 @@
+.card-header {
+  background-color: #20c997;
+}
 .chat-sign-button {
   width: 55px;
   height: 55px;
@@ -8,6 +11,10 @@
   border: none;
   outline: none;
   cursor: pointer;
+  background-color: #ddd9d9;
+}
+.chat-sign-button:hover {
+  background-color: #208d6c4f;
 }
 .icon {
   /* width: 40px;
