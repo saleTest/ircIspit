@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AppModule } from '../../app.module';
 import { BrendService } from './brend.service';
+import { AppModule } from '../../app.module';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-product',
+  selector: 'app-add-products',
   standalone: true,
   imports: [CommonModule, FormsModule, AppModule],
-  providers: [AppModule, ToastrService, BrendService],
-  templateUrl: './add-product.component.html',
-  styleUrl: './add-product.component.css',
+  providers: [ToastrService, BrendService],
+  templateUrl: './add-products.component.html',
+  styleUrl: './add-products.component.css',
 })
-export class AddProductComponent implements OnInit {
+export class AddProductsComponent implements OnInit {
   name: string = '';
   description: string = '';
   price: number = 0;
@@ -50,6 +50,7 @@ export class AddProductComponent implements OnInit {
     this.getBrendsData();
     this.getCategory();
     this.getSubCategory();
+    console.log(123);
   }
 
   onFileSelected(event: any) {

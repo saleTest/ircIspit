@@ -5,7 +5,6 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ProfileComponent } from './auth/profile/profile.component';
-import { AddProductComponent } from './pages/add-product/add-product.component';
 import { ProductsComponentComponent } from './pages/products-component/products-component.component';
 import { OneProductComponent } from './pages/products-component/one-product/one-product.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
@@ -16,6 +15,7 @@ import { OrderHistoryComponent } from './pages/order-history/order-history.compo
 import { UpdateProductComponent } from './pages/update-product/update-product.component';
 import { MouseSimulationComponent } from './mouseMovement/mouse-simulation/mouse-simulation.component';
 import { ChatBotComponent } from './chat/chat-bot/chat-bot.component';
+import { AddProductsComponent } from './pages/add-products/add-products.component';
 
 export const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -24,7 +24,7 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'addProduct', component: AddProductComponent },
+  { path: 'addProduct', component: AddProductsComponent },
   { path: 'updateProduct/:id', component: UpdateProductComponent },
   { path: 'products', component: ProductsComponentComponent },
   { path: 'products/:id', component: OneProductComponent },

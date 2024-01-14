@@ -7,7 +7,7 @@ import { Product } from './product.interface';
   providedIn: 'root',
 })
 export class ProductsServiceService {
-  private apiUrl = 'http://localhost:3000/api/products'; // Promenite na odgovarajuću adresu
+  private apiUrl = 'http://localhost:3000/api/products';
 
   constructor(private http: HttpClient) {}
 
@@ -18,8 +18,10 @@ export class ProductsServiceService {
     );
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);
+  getProducts(page: number, perPage: number): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      `${this.apiUrl}?page=${page}&perPage=${perPage}`
+    );
   }
 
   searchProducts(keyword: string): Observable<Product[]> {
@@ -39,5 +41,9 @@ export class ProductsServiceService {
       updateProductData,
       { headers }
     );
+  }
+
+  getTop4Proizvoda(): Observable<any> {
+    return this.http.get(`http://localhost:3000/api/topProduct/`);
   }
 }

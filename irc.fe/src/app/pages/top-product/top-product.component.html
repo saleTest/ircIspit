@@ -1,0 +1,32 @@
+<div class="container" [ngClass]="{ 'slide-in-from-right': animate }">
+  <h2 class="title">Best-Selling Products</h2>
+  <hr />
+
+  <div class="flex-container">
+    <div *ngFor="let product of topProducts">
+      <div class="cart card-shadow">
+        <div class="cart-banner">
+          <span class="article">BEST SELLING</span>
+          <img class="add" src="../../../assets/images/bookmarks-outline.svg" />
+        </div>
+        <a [routerLink]="['/products', product?._id]">
+          <div class="cart-header">
+            <img
+              src="../../../assets/images/product/{{ product.img }}"
+              alt="{{ product.name }}"
+            />
+            <h2>{{ product.name }}</h2>
+          </div>
+          <div class="cart-body">
+            <ul>
+              <li>{{ product.category }}</li>
+            </ul>
+            <p>
+              <b>{{ product.price | number : "1.2-2" }}</b> RSD
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

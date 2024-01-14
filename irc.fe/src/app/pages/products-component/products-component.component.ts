@@ -18,6 +18,9 @@ import { SearchService } from '../search.service';
 export class ProductsComponentComponent implements OnInit {
   products: Product[] = [];
   animate: boolean = false;
+  currentPage: number = 1;
+  itemsPerPage: number = 12;
+  totalProducts: number = 0;
 
   constructor(
     private productService: ProductsServiceService,
@@ -41,8 +44,11 @@ export class ProductsComponentComponent implements OnInit {
 
   getProducts(): void {
     this.productService
-      .getProducts()
-      .subscribe((products) => (this.products = products));
+      .getProducts(this.currentPage, this.itemsPerPage)
+      .subscribe((response: any) => {
+        this.products = response.products;
+        this.totalProducts = response.totalProducts;
+      });
   }
 
   // products: Product[] = [];/* *//* */
@@ -55,5 +61,21 @@ export class ProductsComponentComponent implements OnInit {
     this.productService
       .searchProducts(keyword)
       .subscribe((products) => (this.products = products));
+  }
+
+  nextPage(): void {
+    this.currentPage++;
+    this.getProducts();
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.getProducts();
+    }
+  }
+
+  hasNextPage(): boolean {
+    return this.currentPage < Math.ceil(this.totalProducts / this.itemsPerPage);
   }
 }

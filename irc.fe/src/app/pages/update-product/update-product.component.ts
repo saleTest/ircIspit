@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsServiceService } from '../products-component/products-service.service';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BrendService } from '../add-product/brend.service';
+import { BrendService } from '../add-products/brend.service';
 
 @Component({
   selector: 'app-update-product',

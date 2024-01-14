@@ -46,7 +46,7 @@ export class OrderHistoryComponent {
 
   deleteProdut(orderId: number) {
     const confirmDelete = window.confirm(
-      'Da li zelite da obrisete iz istorije proizvod?'
+      'Do you want to delete the product from the history?'
     );
     if (confirmDelete) {
       this.http
@@ -58,13 +58,13 @@ export class OrderHistoryComponent {
             console.log('Proizvod uspešno deaktiviran!', response);
           },
           (error) => {
-            console.error('Greška prilikom deaktiviranja proizvoda:', error);
+            console.error('Error fetching orders:', error);
           }
         );
     }
   }
   cancelProductStatus(orderId: number) {
-    const confirmCancel = window.confirm('Da li zelite da otkazete proizvod?');
+    const confirmCancel = window.confirm('Do you want to cancel the product?');
     if (confirmCancel) {
       this.http
         .patch(`http://localhost:3000/api/cancelProductStatus/${orderId}`, {
@@ -75,14 +75,15 @@ export class OrderHistoryComponent {
             console.log('Proizvod uspešno otkazan!', response);
           },
           (error) => {
-            console.error('Greška prilikom otkazivanje proizvoda:', error);
+            console.log(error.message);
+            console.error('Error fetching orders:', error);
           }
         );
     }
   }
 
   confirmProductStatus(orderId: number) {
-    const confirmProduct = window.confirm('Da li je prozivod stigao?');
+    const confirmProduct = window.confirm('Has the product arrived?');
     if (confirmProduct) {
       this.http
         .patch(`http://localhost:3000/api/confirmProductStatus/${orderId}`, {
@@ -93,10 +94,7 @@ export class OrderHistoryComponent {
             console.log('Proizcod uspesno dostavljen', response);
           },
           (error) => {
-            console.error(
-              'Greška prilikom potvrdjivanje proizvoda:',
-              error.message
-            );
+            console.error('Error fetching orders:', error.message);
           }
         );
     }

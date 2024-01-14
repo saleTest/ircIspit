@@ -474,7 +474,7 @@ app.post('/api/add-product', verifyToken, async (req, res) => {
     // console.log(user);
     if (!user || !user.role.includes('admin')) {
       // console.log(!user);
-      // console.log(!user.role.includes('admin'));
+      //console.log(!user.role.includes('admin'));
       return res.status(403).json({ error: 'User is not an admin' });
     }
 
@@ -558,9 +558,19 @@ app.patch('/api/updateProduct/:id', verifyToken, async (req, res) => {
 });
 
 app.get('/api/products', async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const perPage = parseInt(req.query.perPage) || 12;
   try {
-    const products = await Product.find({});
-    res.status(200).json(products);
+    const products = await Product.find({})
+      .skip((page - 1) * perPage)
+      .limit(perPage);
+
+    const totalProducts = await Product.countDocuments();
+
+    res.status(200).json({
+      products: products,
+      totalProducts: totalProducts,
+    });
   } catch (error) {
     res.status(500).send('Failed to fetch products');
   }
@@ -712,7 +722,7 @@ const orderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['u toku', 'zavrseno', 'pristiglo'],
+    enum: ['u toku', 'zavrseno', 'otkazano'],
   },
   createdAt: {
     type: Date,
@@ -788,8 +798,7 @@ app.post('/api/orders/', verifyToken, async (req, res) => {
     }
     // console.log(req.body);
 
-    // Provjera valjanosti statusa narudžbe
-    const validStatuses = ['u toku', 'završeno', 'otkazano']; // Dodajte sve valjane statusne vrijednosti
+    const validStatuses = ['u toku', 'završeno', 'otkazano'];
     if (!validStatuses.includes(status)) {
       return res.status(400).json({ message: 'Invalid order status' });
     }
@@ -824,6 +833,16 @@ app.post('/api/orders/', verifyToken, async (req, res) => {
 
     const savedOrder = await newOrder.save();
     res.status(201).json(savedOrder);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get('/api/topProduct', async (req, res) => {
+  try {
+    const product = await Product.find().sort({ rating: -1 }).limit(4);
+    if (!product) res.status(404).json({ message: 'We have some error!' });
+    res.status(200).json(product);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

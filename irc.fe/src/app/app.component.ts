@@ -10,7 +10,6 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { DarkModeService } from './dark-mode.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductsComponentComponent } from './pages/products-component/products-component.component';
-import { AddProductComponent } from './pages/add-product/add-product.component';
 import { ToastrService } from 'ngx-toastr';
 import { FooterComponent } from './components/footer/footer.component';
 import { MouseSimulationComponent } from './mouseMovement/mouse-simulation/mouse-simulation.component';
@@ -31,7 +30,6 @@ import { ChatBotComponent } from './chat/chat-bot/chat-bot.component';
     AppComponent,
     HttpClientModule,
     ProductsComponentComponent,
-    AddProductComponent,
     MouseSimulationComponent,
     ChatBotComponent,
   ],

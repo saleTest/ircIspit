@@ -6,39 +6,63 @@
   <p>Price: {{ product.price }}</p>
 </div> -->
 
-<section
-  class="container flex-container"
-  [ngClass]="{ 'slide-in-from-right': animate }"
->
-  <div *ngFor="let product of products">
-    <div class="cart card-shadow">
-      <div class="cart-banner">
-        <span class="article">TOP ARTIKAL</span>
-        <img class="add" src="../../../assets/images/bookmarks-outline.svg" />
-      </div>
-      <a [routerLink]="['/products', product?._id]">
-        <div class="cart-header">
-          <img
-            src="../../../assets/images/product/{{ product.img }}"
-            alt="{{ product.name }}"
-          />
-          <h2>{{ product.name }}</h2>
+<div class="container" [ngClass]="{ 'slide-in-from-right': animate }">
+  <h2 class="title">Products</h2>
+  <hr />
+  <section class="flex-container">
+    <div *ngFor="let product of products">
+      <div class="cart card-shadow">
+        <div class="cart-banner">
+          <span class="article">TOP ARTIKAL</span>
+          <img class="add" src="../../../assets/images/bookmarks-outline.svg" />
         </div>
-        <div class="cart-body">
-          <ul>
-            <li>{{ product.category }}</li>
-          </ul>
-          <p>
-            <b>{{ product.price | number : "1.2-2" }}</b> RSD
-          </p>
-        </div>
-      </a>
+        <a [routerLink]="['/products', product?._id]">
+          <div class="cart-header">
+            <img
+              src="../../../assets/images/product/{{ product.img }}"
+              alt="{{ product.name }}"
+            />
+            <h2>{{ product.name }}</h2>
+          </div>
+          <div class="cart-body">
+            <ul>
+              <li>{{ product.category }}</li>
+            </ul>
+            <p>
+              <b>{{ product.price | number : "1.2-2" }}</b> RSD
+            </p>
+          </div>
+        </a>
 
-      <!-- <div class="cart-footer">
+        <!-- <div class="cart-footer">
         <button class="btn-cart" (click)="addToCart(product)">
           <a>Add to Cart</a>
         </button>
       </div> -->
+      </div>
     </div>
+  </section>
+  <div class="pagination-container">
+    <button
+      class="pagination-button"
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+
+    <span class="pagination-dots" *ngIf="currentPage > 1">..</span>
+
+    <span class="current-page">{{ currentPage }}</span>
+
+    <span class="pagination-dots" *ngIf="hasNextPage()">..</span>
+
+    <button
+      class="pagination-button"
+      (click)="nextPage()"
+      [disabled]="!hasNextPage()"
+    >
+      Next
+    </button>
   </div>
-</section>
+</div>

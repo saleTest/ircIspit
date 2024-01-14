@@ -80,7 +80,11 @@
             >
             <!-- product-view.component.html -->
 
-            <mat-icon class="custom-icon red">delete_forever</mat-icon>
+            <mat-icon
+              class="custom-icon red"
+              (click)="deleteProdut(order.order._id)"
+              >delete_forever</mat-icon
+            >
 
             <!-- <button class="btn btn-primary">
               <i class="fa fa-star">Rating</i>
