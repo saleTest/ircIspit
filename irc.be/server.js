@@ -722,7 +722,7 @@ const orderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['u toku', 'zavrseno', 'otkazano'],
+    enum: ['u toku', 'pristiglo', 'otkazano'],
   },
   createdAt: {
     type: Date,
@@ -798,7 +798,7 @@ app.post('/api/orders/', verifyToken, async (req, res) => {
     }
     // console.log(req.body);
 
-    const validStatuses = ['u toku', 'završeno', 'otkazano'];
+    const validStatuses = ['u toku', 'pristiglo', 'otkazano'];
     if (!validStatuses.includes(status)) {
       return res.status(400).json({ message: 'Invalid order status' });
     }

@@ -128,9 +128,7 @@ export class UpdateOrderDialogComponent implements OnInit {
     let confirmation;
 
     if (this.data.status != 'u toku') {
-      confirmation = window.confirm(
-        'Želite li da ponovo aktivirate porudžbinu?'
-      );
+      confirmation = window.confirm('Do you want to reactivate the order?');
     }
 
     if (confirmation) {

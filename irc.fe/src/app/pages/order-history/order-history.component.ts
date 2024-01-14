@@ -58,6 +58,7 @@ export class OrderHistoryComponent {
             console.log('Proizvod uspešno deaktiviran!', response);
           },
           (error) => {
+            console.log(error.message);
             console.error('Error fetching orders:', error);
           }
         );
@@ -118,12 +119,6 @@ export class OrderHistoryComponent {
         width: '400px',
         data: { id: orderId, title: 'Update Ordered', items, status },
       });
-
-      // dialogRef.afterClosed().subscribe((result) => {
-      //   // // Ovde možete obraditi rezultat nakon što se dijalog zatvori
-      //   // console.log('The dialog was closed', result);
-      //   // // Ažurirajte podatke porudžbine na osnovu rezultata ako je potrebno
-      // });
     }
   }
 
